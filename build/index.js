@@ -19,10 +19,6 @@ var _helmet = _interopRequireDefault(require("helmet"));
 
 var _middleware = _interopRequireDefault(require("./middleware/middleware"));
 
-var _swaggerUiExpress = _interopRequireDefault(require("swagger-ui-express"));
-
-var _swagger = _interopRequireDefault(require("./swagger/swagger.json"));
-
 var _initModels = _interopRequireWildcard(require("./models/init-models"));
 
 var _IndexRoute = _interopRequireDefault(require("./routes/IndexRoute"));
@@ -68,9 +64,7 @@ app.use(_config.default.URL_DOMAIN + "/auth", _IndexRoute.default.authRoute);
 app.use(_config.default.URL_API + "/category", _IndexRoute.default.categoryRoute);
 app.use(_config.default.URL_API + "/product", _IndexRoute.default.productRoute);
 app.use(_config.default.URL_API + "/cart", _IndexRoute.default.cartRoute);
-app.use(_config.default.URL_API + "/order", _IndexRoute.default.orderRoute); //swagger
-
-app.use("/api/docs", _swaggerUiExpress.default.serve, _swaggerUiExpress.default.setup(_swagger.default)); //use middleware to handle error from others modules
+app.use(_config.default.URL_API + "/order", _IndexRoute.default.orderRoute); //use middleware to handle error from others modules
 
 app.use(_middleware.default.handleError);
 app.use(_middleware.default.notFound); // set to false agar tidak di drop tables yang ada didatabase

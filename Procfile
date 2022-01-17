@@ -1,3 +1,3 @@
 //Procfile--ini untuk heroku
 
-web: node ./build/index.js
+web:node ./build/index.js
