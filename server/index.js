@@ -42,12 +42,10 @@ app.use(async (req,res,next) =>{
 
 
 // call routes
-app.use(config.URL_DOMAIN+"/auth",routes.authRoute)
-app.use(config.URL_API+"/category",routes.categoryRoute);
-app.use(config.URL_API+"/product",routes.productRoute);
-app.use(config.URL_API+"/cart",routes.cartRoute);
-app.use(config.URL_API+"/order",routes.orderRoute);
-
+app.use(config.URL_DOMAIN+"/pet",routes.petRoute);
+app.use(config.URL_DOMAIN+"/crite",routes.criteRoute);
+app.use(config.URL_DOMAIN+"/habitat",routes.habRoute);
+app.use(config.URL_DOMAIN+"/result",routes.recResultRoute);
 //use middleware to handle error from others modules
 app.use(middleware.handleError);
 app.use(middleware.notFound);

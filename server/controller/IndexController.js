@@ -1,15 +1,19 @@
-import CategoryCtrl from "./CategoryController"
-import ProductCtrl from './ProductController'
-import ProductImageCtrl from "./ProductImageController"
-import UserCtrl from "./UserController"
-import CartCtrl from './CartController'
-import OrderCtrl from './OrderController'
+import HabCtrl from './HabController'
+import HabImageCtrl from "./HabImageController"
+import PetCtrl from './PetController'
+import PetImageCtrl from "./PetImageController"
+import CriteCtrl from './CriteController'
+import CriteImageCtrl from "./CriteImageController"
+import CriteLinesCtrl from "./CriteLinesController"
+import RecResultCtrl from "./RecResultController"
 
 export default {
-    CategoryCtrl,
-    ProductCtrl,
-    ProductImageCtrl,
-    UserCtrl,
-    CartCtrl,
-    OrderCtrl
+    HabCtrl,
+    HabImageCtrl,
+    PetCtrl,
+    PetImageCtrl,
+    CriteCtrl,
+    CriteImageCtrl,
+    CriteLinesCtrl,
+    RecResultCtrl
 }

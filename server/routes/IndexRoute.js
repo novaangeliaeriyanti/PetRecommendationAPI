@@ -1,13 +1,11 @@
-import categoryRoute from './CategoryRoute'
-import productRoute from './ProductRoute'
-import authRoute from './AuthRoute'
-import cartRoute from './CartRoute'
-import orderRoute from './OrderRoute'
+import petRoute from './PetRoute'
+import criteRoute from './CriteRoute'
+import habRoute from "./HabRoute";
+import recResultRoute from "./RecResultRoute";
 
 export default {
-    categoryRoute,
-    authRoute,
-    productRoute,
-    cartRoute,
-    orderRoute
+    petRoute,
+    criteRoute,
+    habRoute,
+    recResultRoute
 }

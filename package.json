@@ -1,5 +1,5 @@
 {
-  "name": "03_eshopay",
+  "name": "petrecommendation",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -7,13 +7,13 @@
     "development": "nodemon --exec babel-node ./server/index.js",
     "clean": "rm -rf build && mkdir build",
     "cleanw": "rmdir /S build && mkdir build",
-    "start": "node ./build/index.js",
+    "start": "nodemon --exec babel-node ./server/index.js",
     "build-server": "babel -d ./build ./server -s",
     "build": "npm run clean && npm run build-server",
     "buildw": "npm run cleanw && npm run build-server",
     "test": "jest",
     "sql": "npx sequelize-cli db:seed:all",
-    "reverse:db": "sequelize-auto -o ./schemas -d eshopay -h localhost -u postgres -p 5432 -x admin -e postgres -l esm"
+    "reverse:db": "sequelize-auto -o ./schemas -d petdb -h localhost -u postgres -p 5432 -x admin -e postgres -l esm"
   },
   "dependencies": {
     "@babel/runtime": "^7.12.13",

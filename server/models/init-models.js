@@ -1,82 +1,67 @@
 import _sequelize from "sequelize";
 import Sequelize from 'sequelize';
 const DataTypes = _sequelize.DataTypes;
-import _cart from  "./cart.js";
-import _category from  "./category.js";
-import _line_items from  "./line_items.js";
-import _orders from  "./orders.js";
-import _products from  "./products.js";
-import _products_images from  "./products_images.js";
-import _token_refresh from  "./token_refresh.js";
-import _users from  "./users.js";
+import _crite_images from  "./crite_images.js";
+import _crite_lines from  "./crite_lines.js";
+import _criteria from  "./criteria.js";
+import _habi_images from  "./habi_images.js";
+import _habitats from  "./habitats.js";
+import _pet_images from  "./pet_images.js";
+import _pets from  "./pets.js";
+import _recomendation_results from  "./recomendation_results.js";
 import config from '../config/config'
-import configHeroku from "../config/config-heroku.js";
+//import configdb from '../config/config-heroku'
 
-// const sequelize = new Sequelize(
-//   config.db_name,
-//   config.db_username,
-//   config.db_password,
-//   {
-//     dialect : "postgres",
-//     pool : {
-//       max : 5,
-//       min : 0,
-//       acquire :30000,
-//       idle : 10000
-//     }
-//   }
-// )
-
-const sequelize = new Sequelize(configHeroku.database, configHeroku.username, configHeroku.password, {
-  host: configHeroku.host,
-  dialect: configHeroku.dialect,
-  operatorsAliases: false,
-  dialectOptions: {
-    ssl: {
-      require: true, 
-      rejectUnauthorized: false 
+ const sequelize = new Sequelize(
+  config.db_name,
+  config.db_username,
+  config.db_password,
+  {
+    dialect : "postgres",
+    pool : {
+      max : 5,
+      min : 0,
+      acquire :30000,
+      idle : 10000
     }
-  },
-  pool: {
-    max: configHeroku.pool.max,
-    min: configHeroku.pool.min,
-    acquire: configHeroku.pool.acquire,
-    idle: configHeroku.pool.idle
   }
-});
+) 
+function initModels(sequelize) {
+  const crite_images = _crite_images.init(sequelize, DataTypes);
+  const crite_lines = _crite_lines.init(sequelize, DataTypes);
+  const criteria = _criteria.init(sequelize, DataTypes);
+  const habi_images = _habi_images.init(sequelize, DataTypes);
+  const habitats = _habitats.init(sequelize, DataTypes);
+  const pet_images = _pet_images.init(sequelize, DataTypes);
+  const pets = _pets.init(sequelize, DataTypes);
+  const recomendation_results = _recomendation_results.init(sequelize, DataTypes);
 
-const initModels=(sequelize)=> {
-  const cart = _cart.init(sequelize, DataTypes);
-  const category = _category.init(sequelize, DataTypes);
-  const line_items = _line_items.init(sequelize, DataTypes);
-  const orders = _orders.init(sequelize, DataTypes);
-  const products = _products.init(sequelize, DataTypes);
-  const products_images = _products_images.init(sequelize, DataTypes);
-  const token_refresh = _token_refresh.init(sequelize, DataTypes);
-  const users = _users.init(sequelize, DataTypes);
-
-  line_items.belongsTo(cart, { as: "lite_cart", foreignKey: "lite_cart_id"});
-  cart.hasMany(line_items, { as: "line_items", foreignKey: "lite_cart_id"});
-  products.belongsTo(category, { as: "prod_cate", foreignKey: "prod_cate_id"});
-  category.hasMany(products, { as: "products", foreignKey: "prod_cate_id"});
-  products_images.belongsTo(products, { as: "prim_prod", foreignKey: "prim_prod_id"});
-  products.hasMany(products_images, { as: "products_images", foreignKey: "prim_prod_id"});
-  cart.belongsTo(users, { as: "cart_user", foreignKey: "cart_user_id"});
-  users.hasMany(cart, { as: "carts", foreignKey: "cart_user_id"});
-  orders.belongsTo(users, { as: "order_user", foreignKey: "order_user_id"});
-  users.hasMany(orders, { as: "orders", foreignKey: "order_user_id"});
-  products.belongsTo(users, { as: "prod_user", foreignKey: "prod_user_id"});
-  users.hasMany(products, { as: "products", foreignKey: "prod_user_id"});
+  crite_images.belongsTo(criteria, { as: "criteimg_crite", foreignKey: "criteimg_crite_id"});
+  criteria.hasMany(crite_images, { as: "crite_images", foreignKey: "criteimg_crite_id"});
+  crite_lines.belongsTo(criteria, { as: "critelines_crite", foreignKey: "critelines_crite_id"});
+  criteria.hasMany(crite_lines, { as: "crite_lines", foreignKey: "critelines_crite_id"});
+  crite_lines.belongsTo(habitats, { as: "critelines_hab", foreignKey: "critelines_hab_id"});
+  habitats.hasMany(crite_lines, { as: "crite_lines", foreignKey: "critelines_hab_id"});
+  habi_images.belongsTo(habitats, { as: "habimg_hab", foreignKey: "habimg_hab_id"});
+  habitats.hasMany(habi_images, { as: "habi_images", foreignKey: "habimg_hab_id"});
+  pets.belongsTo(habitats, { as: "pet_hab", foreignKey: "pet_hab_id"});
+  habitats.hasMany(pets, { as: "pets", foreignKey: "pet_hab_id"});
+  crite_lines.belongsTo(pets, { as: "critelines_pet", foreignKey: "critelines_pet_id"});
+  pets.hasMany(crite_lines, { as: "crite_lines", foreignKey: "critelines_pet_id"});
+  pet_images.belongsTo(pets, { as: "petimg_pet", foreignKey: "petimg_pet_id"});
+  pets.hasMany(pet_images, { as: "pet_images", foreignKey: "petimg_pet_id"});
+  recomendation_results.belongsTo(pets, { as: "res_pet", foreignKey: "res_pet_id"});
+  pets.hasMany(recomendation_results, { as: "recomendation_results", foreignKey: "res_pet_id"});
 
   return {
-    cart,
-    category,
-    line_items,
-    orders,
-    products,
-    products_images,
-    token_refresh,
-    users,
+    crite_images,
+    crite_lines,
+    criteria,
+    habi_images,
+    habitats,
+    pet_images,
+    pets,
+    recomendation_results,
   };
 }
 
