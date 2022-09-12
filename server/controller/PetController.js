@@ -23,9 +23,22 @@ const createPet = async (req, res, next) => {
   }
 };
 
+
+const test = async (req, res, next) => {
+  const { files, fields } = req.fileAttrb;
+  const pet_name =  fields[0].fieldName;
+  console.log(pet_name);
+  try {
+    return res.send(fields);
+  } catch (error) {
+    return res.status(404).json({
+      message: error.message,
+    });
+  }
+};
+
 const findPet = async (req, res) => {
   try {
-
     const result = await req.context.models.pets.findAll({
       attributes: ["pet_name", "pet_desc", "pet_hab_id", "pet_url_image"],
       where: { pet_id: req.params.id },
@@ -74,5 +87,6 @@ const updatePet = async (req, res, next) => {
 export default {
   createPet,
   findPet,
-  updatePet
+  updatePet,
+  test
 };

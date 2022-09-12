@@ -13,10 +13,15 @@ router.post(
 
 router.post(
   "/critelines",
-  UpDonwloadHelper.uploadSingleFile,
   IndexController.PetCtrl.createPet,
   IndexController.PetImageCtrl.createPetImageV2,
   IndexController.CriteLinesCtrl.createPetLines
+);
+
+router.post(
+  "/test",
+  UpDonwloadHelper.uploadSingleFile,
+  IndexController.PetCtrl.test
 );
 
 router.get("/:id", IndexController.PetCtrl.findPet);
