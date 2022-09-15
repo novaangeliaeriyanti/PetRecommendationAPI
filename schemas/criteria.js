@@ -1,46 +1,46 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class pets extends Model {
+export default class criteria extends Model {
   static init(sequelize, DataTypes) {
   return super.init({
-    pet_id: {
+    crite_id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    pet_name: {
+    crite_name: {
       type: DataTypes.STRING(100),
       allowNull: true,
-      unique: "pet_name_uq"
+      unique: "critename_uq"
     },
-    pet_desc: {
+    crite_desc: {
       type: DataTypes.STRING(3000),
       allowNull: true
     },
-    pet_url_image: {
+    crite_url_image: {
       type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'pets',
+    tableName: 'criteria',
     schema: 'public',
     timestamps: false,
     indexes: [
       {
-        name: "pet_id_pk",
+        name: "crite_id_pk",
         unique: true,
         fields: [
-          { name: "pet_id" },
+          { name: "crite_id" },
         ]
       },
       {
-        name: "pet_name_uq",
+        name: "critename_uq",
         unique: true,
         fields: [
-          { name: "pet_name" },
+          { name: "crite_name" },
         ]
       },
     ]

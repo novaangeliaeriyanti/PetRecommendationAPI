@@ -6,7 +6,7 @@ import CriteCtrl from './CriteController'
 import CriteImageCtrl from "./CriteImageController"
 import CriteLinesCtrl from "./CriteLinesController"
 import RecResultCtrl from "./RecResultController"
-
+import HabLineCtrl from "./HabLinesController";
 export default {
     HabCtrl,
     HabImageCtrl,
@@ -15,5 +15,6 @@ export default {
     CriteCtrl,
     CriteImageCtrl,
     CriteLinesCtrl,
-    RecResultCtrl
+    RecResultCtrl,
+    HabLineCtrl
 }

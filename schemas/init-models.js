@@ -1,5 +1,4 @@
 import _sequelize from "sequelize";
-import Sequelize from 'sequelize';
 const DataTypes = _sequelize.DataTypes;
 import _crite_images from  "./crite_images.js";
 import _crite_lines from  "./crite_lines.js";
@@ -10,24 +9,8 @@ import _habitats from  "./habitats.js";
 import _pet_images from  "./pet_images.js";
 import _pets from  "./pets.js";
 import _recomendation_results from  "./recomendation_results.js";
-import config from '../config/config'
 
- const sequelize = new Sequelize(
-  config.db_name,
-  config.db_username,
-  config.db_password,
-  {
-    dialect : "postgres",
-    pool : {
-      max : 5,
-      min : 0,
-      acquire :30000,
-      idle : 10000
-    }
-  }
-) 
-
-function initModels(sequelize) {
+export default function initModels(sequelize) {
   const crite_images = _crite_images.init(sequelize, DataTypes);
   const crite_lines = _crite_lines.init(sequelize, DataTypes);
   const criteria = _criteria.init(sequelize, DataTypes);
@@ -67,8 +50,3 @@ function initModels(sequelize) {
     recomendation_results,
   };
 }
-
-const models = initModels(sequelize);
-
-export default models; 
-export {sequelize};

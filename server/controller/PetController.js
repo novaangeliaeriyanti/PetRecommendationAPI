@@ -7,14 +7,11 @@ const createPet = async (req, res, next) => {
     const result = await req.context.models.pets.create({
       pet_name: fields[0].value,
       pet_desc: fields[1].value,
-      pet_hab_id: parseInt(fields[2].value),
       pet_url_image: files[0].file.newFilename,
     });
 
-    const { pet_id, pet_name, pet_desc, pet_hab_id } = result.dataValues;
+    const { pet_id, pet_name, pet_desc } = result.dataValues;
     req.pet_id = pet_id;
-    req.pet_hab_id = pet_hab_id;
-    req.fields = fields;
     next();
   } catch (error) {
     return res.status(404).json({
@@ -23,13 +20,17 @@ const createPet = async (req, res, next) => {
   }
 };
 
-
-const test = async (req, res, next) => {
-  const { files, fields } = req.fileAttrb;
-  const pet_name =  fields[0].fieldName;
-  console.log(pet_name);
+const addPet = async (req, res, next) => {
   try {
-    return res.send(fields);
+    const result = await req.context.models.pets.create({
+      pet_name: req.body.pet_name,
+      pet_desc: req.body.req_desc,
+      pet_url_image: "aaaaa",
+    });
+
+    const { pet_id, pet_name, pet_desc } = result.dataValues;
+    req.pet_id = pet_id;
+    next();
   } catch (error) {
     return res.status(404).json({
       message: error.message,
@@ -88,5 +89,5 @@ export default {
   createPet,
   findPet,
   updatePet,
-  test
+  addPet
 };

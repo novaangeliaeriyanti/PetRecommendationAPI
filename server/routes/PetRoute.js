@@ -19,9 +19,12 @@ router.post(
 );
 
 router.post(
-  "/test",
-  UpDonwloadHelper.uploadSingleFile,
-  IndexController.PetCtrl.test
+  "/addPet",
+  IndexController.PetCtrl.addPet,
+  IndexController.HabLineCtrl.addPetLines,
+  IndexController.CriteLinesCtrl.addPetLines
+  
+
 );
 
 router.get("/:id", IndexController.PetCtrl.findPet);

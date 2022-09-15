@@ -28,7 +28,7 @@ const createHabImage = async (req, res,next) => {
             list_images
         );
         req.hab_id = hab_id;
-        return res.send(result);
+        next();
     } catch (error) {
         return res.status(404).json({message : error.message})
     }

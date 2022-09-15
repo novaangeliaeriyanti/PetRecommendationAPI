@@ -13,7 +13,7 @@
     "buildw": "npm run cleanw && npm run build-server",
     "test": "jest",
     "sql": "npx sequelize-cli db:seed:all",
-    "reverse:db": "sequelize-auto -o ./schemas -d petdb -h localhost -u postgres -p 5432 -x admin -e postgres -l esm"
+    "reverse:db": "sequelize-auto -o ./schemas -d petDB -h localhost -u postgres -p 5432 -x admin -e postgres -l esm"
   },
   "dependencies": {
     "@babel/runtime": "^7.12.13",

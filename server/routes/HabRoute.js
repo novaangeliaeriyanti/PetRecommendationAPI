@@ -8,7 +8,8 @@ router.post(
   "/",
   UpDonwloadHelper.uploadSingleFile,
   IndexController.HabCtrl.createHab,
-  IndexController.HabImageCtrl.createHabImage
+  IndexController.HabImageCtrl.createHabImage,
+  IndexController.HabLineCtrl.createHabLines
 );
 
 router.get("/", IndexController.HabCtrl.findAllPet);
