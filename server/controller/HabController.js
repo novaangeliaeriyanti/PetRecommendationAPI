@@ -17,19 +17,22 @@ const createHab = async (req, res, next) => {
   }
 };
 
-const findAllPet = async (req, res) => {
+
+const findAllHabitat = async (req, res) => {
   try {
+
     const result = await req.context.models.habitats.findAll({
       attributes: ["hab_id", "hab_name"],
-      where:{hab_id: 1},
       include: [
         {
-          model: req.context.models.pets,
-          as: "pets",
-          attributes: ["pet_id", "pet_name"],
+          model: req.context.models.hab_lines,
+          as: "hab_lines",
+          attributes: ["hablines_pet_id", "hablines_weight"],
         },
       ],
     });
+
+    
     return res.send(result);
   } catch (error) {
     return res.status(404).json({ message: error.message });
@@ -38,5 +41,5 @@ const findAllPet = async (req, res) => {
 
 export default {
   createHab,
-  findAllPet,
+  findAllHabitat,
 };

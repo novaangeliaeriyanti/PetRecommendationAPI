@@ -41,9 +41,14 @@ const addPet = async (req, res, next) => {
 const findPet = async (req, res) => {
   try {
     const result = await req.context.models.pets.findAll({
-      attributes: ["pet_name", "pet_desc", "pet_hab_id", "pet_url_image"],
+      attributes: ["pet_name", "pet_desc", "pet_url_image"],
       where: { pet_id: req.params.id },
       include: [
+        {
+          model: req.context.models.hab_lines,
+          as: "hab_lines",
+          attributes: ["hablines_hab_id", "hablines_weight"],
+        },
         {
           model: req.context.models.crite_lines,
           as: "crite_lines",

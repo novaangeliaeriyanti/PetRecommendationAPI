@@ -12,6 +12,6 @@ router.post(
   IndexController.HabLineCtrl.createHabLines
 );
 
-router.get("/", IndexController.HabCtrl.findAllPet);
+router.get("/", IndexController.HabCtrl.findAllHabitat);
 
 export default router;
